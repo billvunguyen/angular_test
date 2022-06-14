@@ -1,0 +1,40 @@
+
+<div class="m-10">
+    <h1 class="text-center text-4xl font-bold">List of employees</h1>
+    <h2 class="text-center">by Bill</h2>
+
+    <div class="mx-auto flex justify-center items-center mt-2 mb-2 md:w-6/12 w-[40em]">
+        <button (click)="sort('id')" class="text-red-600 bg-transparent border border-solid border-red-600 hover:bg-red-600 hover:text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        Sort by ID
+        </button>
+        <button (click)="sort('employee_name')" class="text-red-600 bg-transparent border border-solid border-red-600 hover:bg-red-600 hover:text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        Sort by name
+        </button>
+        <button (click)="sort('employee_salary')" class="text-red-600 bg-transparent border border-solid border-red-600 hover:bg-red-600 hover:text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        Sort by Salary
+        </button>
+        <button (click)="sort('employee_age')" class="text-red-600 bg-transparent border border-solid border-red-600 hover:bg-red-600 hover:text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+        Sort by Age
+        </button>
+    </div>
+      
+    <ul class="p-4 mx-auto bg-red-600 rounded-2xl lg:w-6/12 w-[40em]">
+        <li class="w-full font-semibold rounded-full bg-white my-1">
+            <div class="lg:w-1/12 w-2/12 inline-block text-red-600 m-2 pl-6">ID</div>
+            <div class="lg:w-5/12 w-4/12 inline-block m-2">Name</div>
+            <div class="lg:w-2/12 w-2/12 inline-block m-2">Salary</div>
+            <div class="lg:w-2/12 w-2/12 inline-block m-2">Age</div>
+        </li>
+
+        <li class="w-full font-semibold rounded-full bg-white my-1" 
+            *ngFor="let employee of employeeList | orderBy: key | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalLength }">
+            <div class="lg:w-1/12 w-2/12 inline-block text-red-600 m-2 pl-6">{{ employee.id }}</div>
+            <div class="lg:w-5/12 w-4/12 inline-block m-2">{{ employee.employee_name}}</div>
+            <div class="lg:w-2/12 w-2/12 inline-block m-2">{{ employee.employee_salary}}</div>
+            <div class="lg:w-2/12 w-2/12 inline-block m-2">{{ employee.employee_age}}</div>
+        </li>
+    </ul>
+
+    <pagination-controls class="m-2 text-center my-pagination" (pageChange)="page = $event"></pagination-controls>
+</div>
+
